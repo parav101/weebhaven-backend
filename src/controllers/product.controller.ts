@@ -6,7 +6,7 @@ import multer from "multer";
 export class productController {
   static viewImage = async (req: Request, res: Response) => {
     // console.log("file",req.file)
-    return res.status(200).send({ url: `http://localhost:3001/${req.file!.filename}` });
+    return res.status(200).send({ url: `${req.file!.filename}` });
   };
 
   static viewImages = async (req: Request, res: Response) => {
@@ -14,7 +14,7 @@ export class productController {
     let files = req.files as Express.Multer.File[];
     let urls: string[] = [];
     files.map((file) => {
-      urls.push(`http://localhost:3001/${file.filename}`);
+      urls.push(`${file.filename}`);
     });
     return res.status(200).send({ urls: urls });
   };

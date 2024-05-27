@@ -9,6 +9,7 @@ import addressRouter from "./routes/address.routes"
 import adminRouter from "./routes/admin.routes"
 import { currentUser } from "./middleware/user.middlware";
 import { db } from "./database/connections";
+import path from "path";
 
 const PORT = process.env.PORT || 3001;
 dotenv.config();
@@ -16,7 +17,7 @@ dotenv.config();
 const init = async () => {
   const app = express();
   app.use(cors());
-  app.use(express.static('src/images'))
+  app.use('/api/images', express.static(path.join(__dirname, "./images")));
   app.use(function (req, res, next) {
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("X-Frame-Options", "SAMEORIGIN");

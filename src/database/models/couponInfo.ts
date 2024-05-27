@@ -72,7 +72,7 @@ export const CouponInfoFactory = (sequelize:Sequelize)=>{
 
   const CouponInfo: CustomModel<CouponInfoInsatance> = sequelize.define<CouponInfoInsatance, CouponInfoAttributes>('CouponInfo', attributes);
   CouponInfo.associate = models=>{
-    CouponInfo.hasMany(models.CouponAssigned,{ sourceKey: 'id',foreignKey:'CouponInfoId' })
+    CouponInfo.hasMany(models.CouponAssigned,{ sourceKey: 'id',foreignKey:'couponInfoId' })
   }
   
   return CouponInfo;
