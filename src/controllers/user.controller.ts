@@ -161,11 +161,15 @@ export class UserController {
 
   static removeAddress = async (req: Request, res: Response) => {
     try {
-      let address = await db.dbInterface.models.Address.destroy({
-        where: { id: req.params.addressId }
-      });
+      let address = await db.dbInterface.models.Address.update( 
+        {
+         isDeleted:true
+        },
+      {  where: { id: req.params.addressId } }
+      );
       return res.status(200).send({ message: "address has been deleted", address: address });
     } catch (error) {
+      console.log(error)
       return res.status(500).send({ message: "error at deleting address" });
     }
   };
